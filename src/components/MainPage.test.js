@@ -42,3 +42,24 @@ it("filters robots correctly", () => {
     },
   ]);
 });
+
+it("filters robots correctly empty", () => {
+  expect(wrapper.instance().filteredRobots([])).toEqual([]);
+
+  const mockProps3 = {
+    onRequestRobots: jest.fn(),
+    robots: [
+      {
+        id: 3,
+        name: "John",
+        email: "john@gmail.com",
+      },
+    ],
+    searchField: "a",
+    isPending: true,
+  };
+
+  const filteredRobots = [];
+  const wrapper3 = shallow(<MainPage {...mockProps3} />);
+  expect(wrapper3.instance().filteredRobots([])).toEqual(filteredRobots);
+});
